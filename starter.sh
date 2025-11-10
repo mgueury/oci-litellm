@@ -6,23 +6,23 @@ STARTER_DIR=".starter"
 if [ -f $STARTER_DIR/starter.sh ]; then
   echo "-- Synchronizing the source files with directory $STARTER_DIR --"
   if [ -d app ]; then
-    rsync -av app $STARTER_DIR/src/app
+    rsync -av app/ $STARTER_DIR/src/app
   fi
   if [ -d src ]; then
-    rsync -av src $STARTER_DIR/src/app/src
+    rsync -av src/ $STARTER_DIR/src/app/src
     if [ -f build_app.sh ]; then
       cp build_app.sh $STARTER_DIR/src/app/.
     fi
   fi
   if [ -d db ]; then
-    rsync -av db $STARTER_DIR/src/db
+    rsync -av db/ $STARTER_DIR/src/db
   fi
   if [ -d ui ]; then
-    rsync -av ui $STARTER_DIR/src/ui
+    rsync -av ui/ $STARTER_DIR/src/ui
   fi
   if [ -f terraform ]; then
-    rsync -R terraform $STARTER_DIR/target/app_terraform
-    cp -R $STARTER_DIR/target/app_terraform $STARTER_DIR/src/terraform
+    rsync -R terraform/ $STARTER_DIR/target/app_terraform
+    cp -R $STARTER_DIR/target/app_terraform/* $STARTER_DIR/src/terraform
   fi
   if [ -f terraform.tfvars ]; then
     cp terraform.tfvars $STARTER_DIR
