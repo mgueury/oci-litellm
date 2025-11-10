@@ -28,15 +28,13 @@ sudo -u postgres psql -c "CREATE DATABASE litellm_db OWNER litellm_user;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE litellm_db TO litellm_user;"
 cd -
 
+# Config.yaml
+sed -i config.yaml "s/##TF_VAR_compartment_ocid##/$TF_VAR_compartment_ocid/"
+sed -i config.yaml "s/##TF_VAR_region##/$TF_VAR_region/"
+sed -i config.yaml "s/##TF_VAR_user_ocid##/$TF_VAR_user_ocid/"
+sed -i config.yaml "s/##TF_VAR_tenancy_ocid##/$TF_VAR_tenancy_ocid/"
+
 # Install virtual env python_env
 uv venv myenv
 source myenv/bin/activate
 uv pip install -r requirements.txt
-
-
-sudo -u postgres psql -c "SELECT * FROM current_catalog;"
-
-sudo -u postgres psql -c "CREATE USER litellm WITH ENCRYPTED PASSWORD 'litellm';"
-sudo -u postgres psql -c "CREATE DATABASE litellm OWNER litellm;"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE litellm TO litellm;"
-export DATABASE_URL="postgresql://litellm:litellm@localhost:5432/litellm"
