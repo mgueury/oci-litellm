@@ -1,0 +1,7 @@
+model_list:
+  - model_name: cohere
+    litellm_params:
+      model: oci/cohere.command-latest
+      oci_region: "##TF_VAR_region##"
+      oci_signer: signer
+      oci_compartment_id: "##TF_VAR_compartment_ocid##"
