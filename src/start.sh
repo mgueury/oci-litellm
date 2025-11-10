@@ -4,4 +4,4 @@ cd $SCRIPT_DIR
 . ./env.sh
 
 source myenv/bin/activate
-litellm --config /app/config.yaml --detailed_debug
+litellm --port 8080 --detailed_debug
