@@ -9,3 +9,4 @@ model_list:
       oci_tenancy: "##TF_VAR_tenancy_ocid##"
       oci_fingerprint: "__YOUR_OCI_FINGER_PRINT__"
       oci_key_file: "/home/opc/app/oci_api_key.pem"
+      drop_params: True
