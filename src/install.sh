@@ -33,7 +33,7 @@ cd -
 # Config.yaml
 sed -i "s/##TF_VAR_compartment_ocid##/$TF_VAR_compartment_ocid/" config.yaml
 sed -i "s/##TF_VAR_region##/$TF_VAR_region/" config.yaml
-sed -i "s/##TF_VAR_user_ocid##/$TF_VAR_user_ocid/" config.yaml
+sed -i "s/##TF_VAR_current_user_ocid##/$TF_VAR_current_user_ocid/" config.yaml
 sed -i "s/##TF_VAR_tenancy_ocid##/$TF_VAR_tenancy_ocid/" config.yaml
 
 # Install virtual env python_env
