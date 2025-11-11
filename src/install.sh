@@ -24,6 +24,13 @@ sudo /usr/bin/postgresql-setup --initdb
 sudo systemctl enable postgresql
 sudo sed -i "s/ident/md5/g" /var/lib/pgsql/data/pg_hba.conf
 sudo systemctl restart postgresql
+
+# . ./env.sh
+# echo $DATABASE_URL
+# sudo su - postgres
+# psql 
+# \l
+
 cd /tmp
 sudo -u postgres psql -c "CREATE USER litellm_user WITH ENCRYPTED PASSWORD '$TF_VAR_db_password';"
 sudo -u postgres psql -c "CREATE DATABASE litellm_db OWNER litellm_user;"
@@ -40,3 +47,7 @@ sed -i "s/##TF_VAR_tenancy_ocid##/$TF_VAR_tenancy_ocid/" config.yaml
 uv venv myenv
 source myenv/bin/activate
 uv pip install -r requirements.txt
+
+# Patch DAC/Cohere
+cp myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py.backup
+cp oci_litelllm/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py
