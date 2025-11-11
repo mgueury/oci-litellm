@@ -19,7 +19,6 @@ uv pip install -r requirements.txt
 # Prima
 sudo dnf module enable -y nodejs:20
 sudo dnf install -y nodejs
-prisma generate
 # LiteLLM bug
 python -m prisma generate --schema myenv/lib64/python3.12/site-packages/litellm/proxy/schema.prisma
 
