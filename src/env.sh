@@ -17,6 +17,6 @@ export UI_PASSWORD=$TF_VAR_db_password
 export DATABASE_URL="postgresql://litellm_user:$TF_VAR_db_password@localhost:5432/litellm_db"
 
 # Config.yaml
-export TF_VAR_user_ocid="##TF_VAR_user_ocid##"
+export TF_VAR_current_user_ocid="##TF_VAR_current_user_ocid##"
 export TF_VAR_tenancy_ocid="##TF_VAR_tenancy_ocid##"
 
