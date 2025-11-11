@@ -20,7 +20,7 @@ if [ -f $STARTER_DIR/starter.sh ]; then
   if [ -d ui ]; then
     rsync -avh ui/ $STARTER_DIR/src/ui
   fi
-  if [ -f terraform ]; then
+  if [ -d terraform ]; then
     rsync -avh terraform/ $STARTER_DIR/target/app_terraform
     cp -R $STARTER_DIR/target/app_terraform/* $STARTER_DIR/src/terraform
   fi
