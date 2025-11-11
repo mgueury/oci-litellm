@@ -2,6 +2,8 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $SCRIPT_DIR
 
+. ./env.sh
+
 # https://yum.oracle.com/oracle-linux-python.html
 
 sudo dnf install -y python3.12 python3.12-pip python3-devel
