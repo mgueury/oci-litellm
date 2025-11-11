@@ -20,7 +20,4 @@ append_done
 append_done "APIKEY: $TF_VAR_db_password"
 append_done "MODEL: oci_cohere_command_latest (see config.yaml)"
 
-elif [ ! -f $FILE_DONE ]; then
-  echo "-" > $FILE_DONE  
-fi
 cat $FILE_DONE  
