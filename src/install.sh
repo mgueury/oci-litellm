@@ -50,4 +50,4 @@ uv pip install -r requirements.txt
 
 # Patch DAC/Cohere
 cp myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py.backup
-cp oci_litelllm/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py
+cp oci_litellm/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py
