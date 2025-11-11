@@ -28,7 +28,7 @@ locals {
 
 # APIGW_DEPLOYMENT
 locals {
-  apigw_dest_private_ip = try(oci_container_instances_container_instance.starter_container_instance.vnics[0].private_ip, "")
+  apigw_dest_private_ip = data.oci_core_instance.starter_compute.private_ip
 }
 
 resource "oci_apigateway_deployment" "starter_apigw_deployment" {   
