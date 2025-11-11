@@ -8,4 +8,4 @@ model_list:
       oci_user: "##TF_VAR_user_ocid##"
       oci_tenancy: "##TF_VAR_tenancy_ocid##"
       oci_fingerprint: "##OCI_FINGER_PRINT##"
-      oci_key: "##OCI_KEY##"
+      oci_key_file: "/home/opc/app/oci_api_key.pem"
