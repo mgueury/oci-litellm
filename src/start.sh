@@ -5,4 +5,4 @@ cd $SCRIPT_DIR
 
 source myenv/bin/activate
 # litellm --port 8080 --detailed_debug 2>&1 | tee app.log
-litellm --port 8080 -config config.yaml --detailed_debug 2>&1 | tee app.log
+litellm --port 8080 --config config.yaml --detailed_debug 2>&1 | tee app.log

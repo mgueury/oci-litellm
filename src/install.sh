@@ -23,7 +23,7 @@ sudo dnf install -y @postgresql
 sudo /usr/bin/postgresql-setup --initdb
 sudo systemctl enable postgresql
 sudo sed -i "s/ident/md5/g" /var/lib/pgsql/data/pg_hba.conf
-sudo systemctl start postgresql
+sudo systemctl restart postgresql
 cd /tmp
 sudo -u postgres psql -c "CREATE USER litellm_user WITH ENCRYPTED PASSWORD '$TF_VAR_db_password';"
 sudo -u postgres psql -c "CREATE DATABASE litellm_db OWNER litellm_user;"
