@@ -11,6 +11,11 @@ sudo dnf install -y python3.12 python3.12-pip python3-devel
 sudo update-alternatives --set python /usr/bin/python3.12
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
+# Install virtual env python_env
+uv venv myenv
+source myenv/bin/activate
+uv pip install -r requirements.txt
+
 # Prima
 sudo dnf module enable -y nodejs:20
 sudo dnf install -y nodejs
@@ -42,11 +47,6 @@ sed -i "s/##TF_VAR_compartment_ocid##/$TF_VAR_compartment_ocid/" config.yaml
 sed -i "s/##TF_VAR_region##/$TF_VAR_region/" config.yaml
 sed -i "s/##TF_VAR_current_user_ocid##/$TF_VAR_current_user_ocid/" config.yaml
 sed -i "s/##TF_VAR_tenancy_ocid##/$TF_VAR_tenancy_ocid/" config.yaml
-
-# Install virtual env python_env
-uv venv myenv
-source myenv/bin/activate
-uv pip install -r requirements.txt
 
 # Patch DAC/Cohere
 cp myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py.backup

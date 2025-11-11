@@ -1,5 +1,5 @@
 model_list:
-  - model_name: cohere_command_latest
+  - model_name: oci_cohere_command_latest
     litellm_params:
       model: oci/cohere.command-latest
       oci_serving_mode: "ON_DEMAND"
