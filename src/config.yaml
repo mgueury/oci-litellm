@@ -10,3 +10,5 @@ model_list:
       oci_fingerprint: "__YOUR_OCI_FINGER_PRINT__"
       oci_key_file: "/home/opc/app/oci_api_key.pem"
       drop_params: True
+      # oci_serving_mode: "DEDICATED"
+      # oci_endpoint_id: "ocid1.generativeaiendpoint.oc1.us-chicago-1..."
