@@ -28,7 +28,7 @@ if [ -f $STARTER_DIR/starter.sh ]; then
     cp terraform.tfvars $STARTER_DIR
   fi
   if [ -f done.sh ]; then
-    cp done.sh $STARTER_DIR
+    cp done.sh $STARTER_DIR/src
   fi
   # cp done.txt starter/.
   $STARTER_DIR/starter.sh $@
