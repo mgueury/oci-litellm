@@ -14,11 +14,13 @@ echo "URLs" > $FILE_DONE
 append_done ""
 append_done "LiteLLM UI:"
 append_done "- $UI_URL:8080/ui"
+append_done "  admin /  $TF_VAR_db_password"
 append_done ""
 append_done "OpenAI compatible URL"
 append_done "- $UI_URL:8080/v1"
 append_done "- https://${APIGW_HOSTNAME}/${TF_VAR_prefix}/v1"
-append_done "APIKEY: $TF_VAR_db_password"
-append_done "MODEL: oci_cohere_command_latest (see config.yaml)"
+append_done "  API KEY : $TF_VAR_db_password"
+append_done "  MODEL   : oci_cohere_command_latest (see config.yaml)"
+append_done ""
 
 cat $FILE_DONE  
