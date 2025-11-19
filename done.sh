@@ -29,8 +29,3 @@ append_done "-d '{"model": \"oci_cohere_command_latest\", \"prompt\": \"Who are 
 append_done ""
 
 cat $FILE_DONE  
-
-curl https://${APIGW_HOSTNAME}/${TF_VAR_prefix}/v1/completions \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $TF_VAR_db_password" \
--d '{"model": "oci_cohere_command_latest", "prompt": "Who are you", "temperature": 0, "max_tokens": 200}'
