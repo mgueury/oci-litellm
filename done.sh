@@ -22,5 +22,15 @@ append_done "- https://${APIGW_HOSTNAME}/${TF_VAR_prefix}/v1"
 append_done "  API KEY : $TF_VAR_db_password"
 append_done "  MODEL   : oci_cohere_command_latest (see config.yaml)"
 append_done ""
+append_done "curl https://${APIGW_HOSTNAME}/${TF_VAR_prefix}/v1/completions \\"
+append_done "-H "Content-Type: application/json" \\"
+append_done "-H \"Authorization: Bearer $TF_VAR_db_password\" \\"
+append_done "-d '{"model": \"oci_cohere_command_latest\", \"prompt\": \"Who are you\", \"max_tokens\": 200}'"
+append_done ""
 
 cat $FILE_DONE  
+
+curl https://${APIGW_HOSTNAME}/${TF_VAR_prefix}/v1/completions \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TF_VAR_db_password" \
+-d '{"model": "oci_cohere_command_latest", "prompt": "Who are you", "temperature": 0, "max_tokens": 200}'
