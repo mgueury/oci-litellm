@@ -29,7 +29,8 @@ if [ -f $STARTER_DIR/starter.sh ]; then
     ln -s ../terraform.tfvars $STARTER_DIR/terraform.tfvars
   fi
   if [ -f done.sh ]; then
-    cp done.sh $STARTER_DIR/src
+    rm $STARTER_DIR/src/done.sh
+    ln -s ../../done.sh $STARTER_DIR/src/done.sh
   fi
   # cp done.txt starter/.
   $STARTER_DIR/starter.sh $@
