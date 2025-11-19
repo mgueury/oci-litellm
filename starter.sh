@@ -25,6 +25,7 @@ if [ -f $STARTER_DIR/starter.sh ]; then
     cp -R $STARTER_DIR/target/app_terraform/* $STARTER_DIR/src/terraform
   fi
   if [ -f terraform.tfvars ]; then
+    rm $STARTER_DIR/terraform.tfvars
     ln -s terraform.tfvars $STARTER_DIR
   fi
   if [ -f done.sh ]; then
