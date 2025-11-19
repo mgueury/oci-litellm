@@ -10,16 +10,17 @@ echo
 echo "Build done"
 
 # Do not show the Done URLs if after_build.sh exists 
-if [ "$UI_URL" != "" ]; then
-  echo "URLs" > $FILE_DONE
-    append_done "- User Interface: $UI_URL/"     
-  if [ "$UI_HTTP" != "" ]; then
-    append_done "- HTTP : $UI_HTTP/"
-  fi
-  append_done "- REST: $UI_URL/app/dept"
-  append_done "- REST: $UI_URL/app/info" 
+echo "URLs" > $FILE_DONE
+append_done ""
+append_done "LiteLLM UI:"
+append_done "- $UI_URL:8080/ui"
+append_done "  admin /  $TF_VAR_db_password"
+append_done ""
+append_done "OpenAI compatible URL"
+append_done "- $UI_URL:8080/v1"
+append_done "- https://${APIGW_HOSTNAME}/${TF_VAR_prefix}/v1"
+append_done "  API KEY : $TF_VAR_db_password"
+append_done "  MODEL   : oci_cohere_command_latest (see config.yaml)"
+append_done ""
 
-elif [ ! -f $FILE_DONE ]; then
-  echo "-" > $FILE_DONE  
-fi
 cat $FILE_DONE  
