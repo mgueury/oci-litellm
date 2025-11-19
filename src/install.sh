@@ -37,7 +37,7 @@ sudo systemctl restart postgresql
 
 cd /tmp
 sudo -u postgres psql -c "CREATE USER litellm_user WITH ENCRYPTED PASSWORD '$TF_VAR_db_password';"
-sudo -u postgres psql -c "ALTER USER user_name WITH PASSWORD '$TF_VAR_db_password';"
+sudo -u postgres psql -c "ALTER USER litellm_user WITH PASSWORD '$TF_VAR_db_password';"
 sudo -u postgres psql -c "CREATE DATABASE litellm_db OWNER litellm_user;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE litellm_db TO litellm_user;"
 cd -
