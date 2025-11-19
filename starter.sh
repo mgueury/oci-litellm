@@ -37,3 +37,4 @@ else
   echo "Error: $STARTER_DIR directory is missing"
 fi  
 exit ${PIPESTATUS[0]}
+
