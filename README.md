@@ -24,9 +24,11 @@
   - src/config.yaml: fill in the files based on the ##SETTINGS## above
   - src/oci_api_key.pem : put the content of ##PRIVATE_KEY##
 - Run terraform
+  ```
   ./starter.sh build
-  > Compartment see: ##Compartment OCID##
+  > Compartment use: ##Compartment OCID##
   > Password: use your own password and do not use special characters. LiteLLM is sensitive to a lot of them and the installation get broken.
+  ```
 - Wait that it finishes
   You will get something like this at the end
   ```
