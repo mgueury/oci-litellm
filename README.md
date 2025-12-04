@@ -1,6 +1,49 @@
-## OCI-Starter
-### Usage
+## OCI Lite-LLM installation script
 
+### Usage
+- Login to OCI Cloud
+- Create a compartment and get the ##compartment OCID##
+- Click on your user icon.
+  - Profile / your user
+  - Go in the tab tokens and key. In API Keys, click add **API Keys**
+  - Download the 2 key private (##PRIVATE_KEY##) and public.
+  - You will get your user ##SETTINGS##. Ex:
+    ```
+    [DEFAULT]
+    user=ocid1.user.oc1..xxxxx
+    fingerprint=12:34:56:78:12:34:56:78:12:34:56:78:12:34:56:78:12:34:56:78
+    tenancy=ocid1.tenancy.oc1..xxxxxx
+    region=eu-frankfurt-1
+    key_file=<path to your private keyfile>
+    ```
+- Start the cloud shell
+- Run: git clone https://github.com/mgueury/oci-litellm.git
+- Edit the files
+  - src/config.yaml: fill in the files based on the ##SETTINGS## above
+  - src/oci_api_key.pem : put the content of ##PRIVATE_KEY##
+- Run terraform
+  ./starter.sh build
+  > Compartment see: ##Compartment OCID##
+  > Password: use your own password and do not use special characters. LiteLLM is sensitive to a lot of them and the installation get broken.
+- Wait that it finishes
+  You will get something like this at the end
+  ```
+  LiteLLM UI:
+  - http://12.34.45.67:8080/ui
+    admin / pwd123
+
+  OpenAI compatible URL
+  - http://152.70.27.47:8080/v1
+  - https://xxxx.apigateway.eu-frankfurt-1.oci.customer-oci.com/litellm/v1
+    API KEY : pwd123
+    MODEL   : oci_cohere_command_latest (see config.yaml)
+
+  curl https://xxxx.apigateway.eu-frankfurt-1.oci.customer-oci.com/litellm/v1/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer pwd123" \
+  -d '{"model": "oci_cohere_command_latest", "prompt": "Who are you", "max_tokens": 200}'
+  ```
+  
 ### Commands
 - starter.sh         : Show the menu
 - starter.sh help    : Show the list of commands
