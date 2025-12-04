@@ -28,7 +28,7 @@ locals {
 
 # APIGW_DEPLOYMENT
 locals {
-  apigw_dest_private_ip = data.oci_core_instance.starter_compute.private_ip
+  apigw_dest_private_ip = local.local_compute_ip
 }
 
 resource "oci_apigateway_deployment" "starter_apigw_deployment" {   
@@ -51,12 +51,13 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
       methods = [ "ANY" ]
       backend {
         type = "HTTP_BACKEND"
-        url    = "http://${local.apigw_dest_private_ip}:8080/$${request.path[pathname]}"
+        url    = "http://${local.local_compute_ip}:8080/$${request.path[pathname]}"
       }
     }     
   }
   freeform_tags = local.freeform_tags
 }
+
 
 ## CUSTOM DEPENDENCY (Add your dependency before building the app)
 resource "null_resource" "custom_dependency" {
