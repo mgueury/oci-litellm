@@ -6,8 +6,10 @@
 - Click on your user icon.
   - Profile / your user
   - Go in the tab tokens and key. In API Keys, click add **API Keys**
-  - Download the 2 key private (##PRIVATE_KEY##) and public.
-  - You will get your user ##SETTINGS##. Ex:
+  - Download the 2 keys
+    - private (##PRIVATE_KEY##) 
+    - and public.
+  - You will also some user ##SETTINGS##. Ex:
     ```
     [DEFAULT]
     user=ocid1.user.oc1..xxxxx
