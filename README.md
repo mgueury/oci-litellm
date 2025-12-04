@@ -27,7 +27,7 @@
   ```
   ./starter.sh build
   > Compartment use: ##Compartment OCID##
-  > Password: use your own password and do not use special characters. LiteLLM is sensitive to a lot of them and the installation get broken.
+  > Password: use your own password and do not use special characters. LiteLLM is sensitive to a lot of them and the installation can brake because of them.
   ```
 - Wait that it finishes
   You will get something like this at the end
