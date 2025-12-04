@@ -18,7 +18,7 @@
     region=eu-frankfurt-1
     key_file=<path to your private keyfile>
     ```
-- In OCI Console, start the OCI Cloud Shell
+- In OCI Console, start the OCI Cloud Shell or the Cloud Editor.
 - Run: git clone https://github.com/mgueury/oci-litellm.git
 - Edit the files
   - src/config.yaml: fill in the files based on the ##SETTINGS## above
