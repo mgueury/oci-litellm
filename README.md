@@ -58,8 +58,6 @@
 ### Directories
 - src           : Sources files
     - app       : Source of the Backend Application
-    - ui        : Source of the User Interface
-    - db        : SQL files of the database
     - terraform : Terraform scripts
     - compute   : Contains the deployment files to Compute
 
