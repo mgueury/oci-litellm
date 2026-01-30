@@ -58,7 +58,6 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
   freeform_tags = local.freeform_tags
 }
 
-
 ## CUSTOM DEPENDENCY (Add your dependency before building the app)
 resource "null_resource" "custom_dependency" {
   depends_on = [
