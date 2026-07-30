@@ -1,2 +1,5 @@
-litellm[proxy]
-prisma
+
+Flask
+flask-cors
+waitress
+   
