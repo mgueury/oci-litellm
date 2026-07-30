@@ -90,7 +90,7 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
               ]
             }
             items {
-              name = "Host"
+              name = "X-Forwarded-Host"
               values = ["$${request.headers[Host]}"]
             }
             items {
