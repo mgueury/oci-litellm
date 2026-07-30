@@ -2,23 +2,14 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $SCRIPT_DIR
 
-. ./env.sh
+. $HOME/compote/shared_compute.sh
+./env.sh
 
 # https://yum.oracle.com/oracle-linux-python.html
 
-sudo dnf install -y python3.12 python3.12-pip python3-devel
-# sudo pip3.12 install pip --upgrade
-sudo update-alternatives --set python /usr/bin/python3.12
-curl -LsSf https://astral.sh/uv/install.sh | sh
+install_python
+install_nodejs
 
-# Install virtual env python_env
-uv venv myenv
-source myenv/bin/activate
-uv pip install -r requirements.txt
-
-# Prima
-sudo dnf module enable -y nodejs:20
-sudo dnf install -y nodejs
 # LiteLLM bug
 python -m prisma generate --schema myenv/lib64/python3.12/site-packages/litellm/proxy/schema.prisma
 
@@ -43,11 +34,9 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE litellm_db TO litellm
 cd -
 
 # Config.yaml
-sed -i "s/##TF_VAR_compartment_ocid##/$TF_VAR_compartment_ocid/" config.yaml
+sed -i "s/##TF_VAR_genai_api_key##/$TF_VAR_genai_api_key/" config.yaml
 sed -i "s/##TF_VAR_region##/$TF_VAR_region/" config.yaml
-sed -i "s/##TF_VAR_current_user_ocid##/$TF_VAR_current_user_ocid/" config.yaml
-sed -i "s/##TF_VAR_tenancy_ocid##/$TF_VAR_tenancy_ocid/" config.yaml
 
 # Patch DAC/Cohere
-cp myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py.backup
-cp oci_litellm/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py
+# cp myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py.backup
+# cp oci_litellm/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py
