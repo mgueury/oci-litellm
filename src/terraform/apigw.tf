@@ -74,7 +74,7 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
       methods = [ "ANY" ]
       backend {
         type = "HTTP_BACKEND"
-        url    = "http://${local.apigw_dest_private_ip}/$${request.path[pathname]}"
+        url    = "http://${local.apigw_dest_private_ip}:8080/$${request.path[pathname]}"
       }
       # Forward the JWT access_token using Bearer
       # To decode, and get the username  
@@ -88,7 +88,15 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
               values = [
                 "Bearer $${request.auth[access_token]}",
               ]
-            }          
+            }         
+            items {
+              name = "X-Forwarded-Host"
+              values = ["$${request.headers[Host]}"]
+            }
+            items {
+              name = "X-Forwarded-Proto"
+              values = ["https"]
+            }            
           }
         }
       }         
