@@ -56,7 +56,7 @@ resource "null_resource" "tf_env" {
     append "# Database"
     append "export DB_USER=\$TF_VAR_db_user" 
     append "export DB_PASSWORD=\$TF_VAR_db_password" 
-    # append_export "OCI_STARTER_CREATION_DATE" "2026-07-30-15-15-45-105850"
+    # append_export "OCI_STARTER_CREATION_DATE" "2026-07-30-16-15-32-374477"
     # append_export "OCI_STARTER_VERSION" "4.2"
     # append_export "OCI_STARTER_PARAMS" "prefix,java_framework,java_vm,java_version,python_framework,ui_type,db_type,license_model,app_mode,mode,infra_as_code,db_password,oke_type,security,build_host,language,deploy_type"
     chmod 755 $ENV_FILE

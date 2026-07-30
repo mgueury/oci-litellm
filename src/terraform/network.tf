@@ -121,24 +121,13 @@ resource "oci_core_security_list" "starter_security_list" {
             min = 443
             max = 443
         }
-    }  
+    }
 
     ingress_security_rules {
         protocol  = "6" // tcp
         source    = local.cidr_vcn
         stateless = false
 
-        tcp_options {
-            min = 443
-            max = 443
-        }
-    }
-
-    # Connection from the nat_gateway IP. (For ex: to allow crawling of the website)
-    ingress_security_rules {
-        protocol  = "6" // tcp
-        source    = "${oci_core_nat_gateway.starter_nat_gateway[0].nat_ip}/32"
-        stateless = false
         tcp_options {
             min = 443
             max = 443
@@ -211,29 +200,6 @@ resource "oci_core_security_list" "starter_security_list" {
         max = 8080
         }
     }
-
-    // ORCL_DB_SEE
-    ingress_security_rules {
-        protocol  = "6" // tcp
-        source    = local.cidr_vcn
-        stateless = false
-
-        tcp_options {
-            min = 8081
-            max = 8081
-        }
-    }  
-
-    ingress_security_rules {
-        protocol  = "6" // tcp
-        source    = local.cidr_vcn
-        stateless = false
-
-        tcp_options {
-            min = 8082
-            max = 8082
-        }
-    }    
 
     // Oracle TNS Listener port
     ingress_security_rules {

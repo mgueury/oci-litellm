@@ -1,3 +1,4 @@
+   
 resource "oci_core_instance" "starter_compute" {
 
   availability_domain = local.availability_domain_name
@@ -36,7 +37,7 @@ resource "oci_core_instance" "starter_compute" {
 
   source_details {
     source_type = "image"
-    boot_volume_size_in_gbs = "100" 
+    # boot_volume_size_in_gbs = "50" 
     source_id   = data.oci_core_images.oraclelinux.images.0.id
   }
 

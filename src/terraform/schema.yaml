@@ -14,7 +14,8 @@ variableGroups:
   visible: true  
   variables:
   - prefix
-  - license_model
+  - public_ip_filter
+  - your_public_ssh_key
   - compartment_ocid
   - show_optional
 
@@ -22,19 +23,26 @@ variableGroups:
   visible: ${show_optional}
   variables:
   - app_mode
+  - build_host
   - db_type
   - deploy_type
   - language
+  - python_framework
   - ui_type
 
 - title: Optional
   visible: ${show_optional}  
   variables:
+  - app_subnet_ocid
   - auth_token
   - availability_domain_number
+  - build_src
   - certificate_ocid
+  - config_file_profile
   - db_password
+  - db_subnet_ocid
   - db_user
+  - git_url
   - group_name
   - home_region
   - idcs_domain_name
@@ -43,6 +51,7 @@ variableGroups:
   - instance_ocpus
   - instance_shape
   - instance_shape_config_memory_in_gbs
+  - license_model
   - log_group_ocid
   - lz_app_cmp_ocid
   - lz_db_cmp_ocid
@@ -50,10 +59,14 @@ variableGroups:
   - lz_security_cmp_ocid
   - lz_serv_cmp_ocid
   - lz_web_cmp_ocid
+  - no_policy
+  - openapi_spec
   - region
   - ssh_private_key
   - ssh_public_key
   - tenancy_ocid
+  - vcn_ocid
+  - web_subnet_ocid
 
 #################
 # Output Groups
@@ -65,6 +78,10 @@ variableGroups:
 
 variables:
 # Env Params
+  app_subnet_ocid:    
+    type: string
+    title: app_subnet_ocid
+    required: false
   auth_token:    
     type: string
     title: auth_token
@@ -73,6 +90,10 @@ variables:
   availability_domain_number:    
     type: string
     title: availability_domain_number
+    required: false
+  build_src:    
+    type: string
+    title: build_src
     required: false
   certificate_ocid:    
     type: string
@@ -84,15 +105,27 @@ variables:
     title: Compartment
     description: "Compartment OCID"
     required: true
+  config_file_profile:    
+    type: string
+    title: config_file_profile
+    required: false
   db_password:
     type: password
     confirmation: true
     title: Database Password
     description: "Min length 12 characters, 2 lowercase, 2 uppercase, 2 numbers, 2 special characters. Ex: LiveLab__12345"
     required: false
+  db_subnet_ocid:    
+    type: string
+    title: db_subnet_ocid
+    required: false
   db_user:    
     type: string
     title: Database User
+    required: false
+  git_url:    
+    type: string
+    title: git_url
     required: false
   group_name:    
     type: string
@@ -113,10 +146,10 @@ variables:
   infra_as_code:
     type: enum
     enum:
+      - resource_manager
+      - from_resource_manager
       - terraform_local
       - terraform_object_storage
-      - from_resource_manager
-      - resource_manager
     title: infra_as_code
     required: false
   instance_ocpus:    
@@ -138,7 +171,7 @@ variables:
       - LICENSE_INCLUDED
     title: Licence Model
     description: "BRING_YOUR_OWN_LICENSE or LICENSE_INCLUDED"
-    required: true
+    required: false
   log_group_ocid:    
     type: string
     title: log_group_ocid
@@ -167,10 +200,23 @@ variables:
     type: oci:identity:compartment:id
     title: lz_web_cmp_ocid
     required: false
+  no_policy:    
+    type: string
+    title: no_policy
+    required: false
+  openapi_spec:    
+    type: string
+    title: openapi_spec
+    required: false
   prefix:    
     type: string
     title: Prefix
     description: "Prefix to all resources created by terraform"
+    required: true
+  public_ip_filter:    
+    type: string
+    title: public_ip_filter
+    description: "IP Range that can access port like 80/443 on the internet. Typically:"
     required: true
   region:
     type: oci:identity:region:name
@@ -188,6 +234,19 @@ variables:
     type: string
     title: Tenancy
     required: false
+  vcn_ocid:    
+    type: string
+    title: vcn_ocid
+    required: false
+  web_subnet_ocid:    
+    type: string
+    title: web_subnet_ocid
+    required: false
+  your_public_ssh_key:    
+    type: string
+    title: your_public_ssh_key
+    description: "Your ssh public key (associated with your private key stored in your laptop) that will be added in .ssh/authorized host in the bastion."
+    required: true
   show_optional:
     type: boolean
     title: Advanced
