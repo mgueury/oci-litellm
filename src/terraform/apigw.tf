@@ -88,11 +88,7 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
               values = [
                 "Bearer $${request.auth[access_token]}",
               ]
-            }
-            items {
-              name = "Host"
-              values = ["$${request.headers[Host]}"]
-            }            
+            }        
             items {
               name = "X-Forwarded-Host"
               values = ["$${request.headers[Host]}"]
