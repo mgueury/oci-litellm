@@ -1,20 +1,41 @@
 #!/usr/bin/env bash
-#
-# starter.sh proxy. Run the real oci_starter.sh 
-# - in $PROJECT_DIR/bin
-# - or in $PATH
-#
-export PROJECT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-export CURRENT_DIR=`pwd`
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $SCRIPT_DIR
 
-if [ -f $PROJECT_DIR/bin/oci_starter.sh ]; then
-  export PATH=$PROJECT_DIR/bin:$PATH
-fi  
-
-(return 0 2>/dev/null) && SOURCED=1 || SOURCED=0
-if [ "$SOURCED" == "1" ]; then
-  . oci_starter.sh $@
+STARTER_DIR=".starter"
+if [ -f $STARTER_DIR/starter.sh ]; then
+  echo "-- Synchronizing the source files with directory $STARTER_DIR --"
+  if [ -d app ]; then
+    rsync -avh app/ $STARTER_DIR/src/app
+  fi
+  if [ -d src ]; then
+    rsync -avh src/ $STARTER_DIR/src/app/src
+    if [ -f build_app.sh ]; then
+      cp build_app.sh $STARTER_DIR/src/app/.
+    fi
+  fi
+  if [ -d db ]; then
+    rsync -avh db/ $STARTER_DIR/src/db
+  fi
+  if [ -d ui ]; then
+    rsync -avh ui/ $STARTER_DIR/src/ui
+  fi
+  if [ -d terraform ]; then
+    rsync -avh terraform/ $STARTER_DIR/target/app_terraform
+    cp -R $STARTER_DIR/target/app_terraform/* $STARTER_DIR/src/terraform
+  fi
+  if [ -f terraform.tfvars ]; then
+    rm $STARTER_DIR/terraform.tfvars
+    ln -s ../terraform.tfvars $STARTER_DIR/terraform.tfvars
+  fi
+  if [ -f done.sh ]; then
+    rm $STARTER_DIR/src/done.sh
+    ln -s ../../done.sh $STARTER_DIR/src/done.sh
+  fi
+  # cp done.txt starter/.
+  $STARTER_DIR/starter.sh $@
 else
-  oci_starter.sh $@
-  exit ${PIPESTATUS[0]}
-fi
+  echo "Error: $STARTER_DIR directory is missing"
+fi  
+exit ${PIPESTATUS[0]}
+
