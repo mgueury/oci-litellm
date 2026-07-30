@@ -14,7 +14,7 @@ install_nodejs
 python -m prisma generate --schema myenv/lib64/python3.12/site-packages/litellm/proxy/schema.prisma
 
 # Postgres (LiteLLM config)
-sudo dnf install -y @postgresql
+sudo dnf install -y postgresql postgresql-server
 sudo /usr/bin/postgresql-setup --initdb
 sudo systemctl enable postgresql
 sudo sed -i "s/ident/md5/g" /var/lib/pgsql/data/pg_hba.conf
@@ -40,3 +40,4 @@ sed -i "s/##TF_VAR_region##/$TF_VAR_region/" config.yaml
 # Patch DAC/Cohere
 # cp myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py.backup
 # cp oci_litellm/transformation.py myenv/lib64/python3.12/site-packages/litellm/llms/oci/chat/transformation.py
+
