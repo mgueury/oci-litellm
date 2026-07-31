@@ -1,6 +1,11 @@
 model_list:
   - model_name: openai-gpt-oss120b
     litellm_params:
-      model: openai/openai-gpt-oss120b
-      api_base: "https://inference.generativeai.##TF_VAR_region##.oci.oraclecloud.com/openai/v1/completions"
+      model: openai/openai.gpt-oss-120b
+      api_base: "https://inference.generativeai.##TF_VAR_region##.oci.oraclecloud.com/openai/v1"
+      api_key: "##TF_VAR_genai_api_key##"
+  - model_name: google.gemini-2.5-pro
+    litellm_params:
+      model: openai/google.gemini-2.5-pro
+      api_base: "https://inference.generativeai.##TF_VAR_region##.oci.oraclecloud.com/openai/v1"
       api_key: "##TF_VAR_genai_api_key##"
