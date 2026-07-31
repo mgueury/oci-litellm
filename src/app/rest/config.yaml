@@ -1,11 +1,22 @@
 model_list:
   - model_name: openai-gpt-oss120b
     litellm_params:
-      model: openai/openai.gpt-oss-120b
+      model: openai/chat_completions/openai.gpt-oss-120b
       api_base: "https://inference.generativeai.##TF_VAR_region##.oci.oraclecloud.com/openai/v1"
       api_key: "##TF_VAR_genai_api_key##"
   - model_name: google.gemini-2.5-pro
     litellm_params:
-      model: openai/google.gemini-2.5-pro
+      model: openai/chat_completions/google.gemini-2.5-pro
       api_base: "https://inference.generativeai.##TF_VAR_region##.oci.oraclecloud.com/openai/v1"
       api_key: "##TF_VAR_genai_api_key##"
+  - model_name: dac
+    litellm_params:
+      model: openai/chat_completions/##TF_VAR_genai_endpoint_ocid##
+      api_base: "https://inference.generativeai.uk-london-1.oci.oraclecloud.com/openai/v1"
+      api_key: "##TF_VAR_london_genai_api_key##"
+  - model_name: sonnet
+    litellm_params:
+      model: openai/chat_completions/google.gemini-2.5-pro
+      api_base: "https://inference.generativeai.##TF_VAR_region##.oci.oraclecloud.com/openai/v1"
+      api_key: "##TF_VAR_genai_api_key##"
+
