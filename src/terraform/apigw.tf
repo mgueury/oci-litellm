@@ -91,7 +91,7 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
             }
             items {
               name = "Host"
-              values = ["$${request.headers[Host]}"]
+              values = ["a6qghhkojhr5vxgegnjv47cr54.apigateway.eu-frankfurt-1.oci.customer-oci.com"]
             }            
             items {
               name = "X-Forwarded-Proto"
