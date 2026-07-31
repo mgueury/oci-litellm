@@ -83,15 +83,8 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
         header_transformations {
           set_headers {
             items {
-              if_exists = "OVERWRITE"
-              name      = "Authorization"
-              values = [
-                "Bearer $${request.auth[access_token]}",
-              ]
-            }
-            items {
               name = "Host"
-              values = ["a6qghhkojhr5vxgegnjv47cr54.apigateway.eu-frankfurt-1.oci.customer-oci.com"]
+              values = [local.local_apigw_hostname]
             }            
             items {
               name = "X-Forwarded-Proto"
